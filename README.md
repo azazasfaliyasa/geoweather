@@ -8,7 +8,7 @@ Dibangun menggunakan [Next.js App Router](https://nextjs.org/docs/app) dengan Ta
 
 ## 🚀 Demo Live
 
-🌐 [https://geoweather.vercel.app](https://geoweather.vercel.app)
+🌐 [https://geoweather-woad.vercel.app/](https://geoweather-woad.vercel.app/)
 
 ---
 
@@ -63,6 +63,8 @@ npm run dev
 
 Buka [http://localhost:3000](http://localhost:3000) di browser.
 
+---
+
 ## 🚀 Deploy ke Vercel
 
 Aplikasi ini siap dideploy ke Vercel secara langsung. Langkah:
@@ -78,7 +80,7 @@ Aplikasi ini siap dideploy ke Vercel secara langsung. Langkah:
 
 ## 📸 Preview
 
-<img src="public/preview.png" alt="Preview App" width="100%" />
+<img src="public/preview.jpg" alt="Preview App" width="100%" />
 
 ---
 
