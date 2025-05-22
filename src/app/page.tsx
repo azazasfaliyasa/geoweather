@@ -14,21 +14,21 @@ const LeafletMapClient = dynamic(() => import("@/components/LeafletMapClient"), 
 });
 
 export default function Home() {
-  const { location, error: geoError } = useGeolocation();
+  const { location, error: geoError, status } = useGeolocation();
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   // Ambil cuaca berdasar koordinat device jika ada lokasi
   useEffect(() => {
-    if (location) {
+    if (status === "success" && location) {
       setLoading(true);
       fetchWeatherByCoords(location.lat, location.lon)
         .then(setWeatherData)
         .catch(() => setError("Gagal mengambil data cuaca berdasarkan lokasi Anda."))
         .finally(() => setLoading(false));
     }
-  }, [location]);
+  }, [location, status]);
 
   function handleSearch(query: string) {
     setLoading(true);
@@ -42,13 +42,25 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-500 to-indigo-700 p-4">
       <SearchLocation onSearch={handleSearch} />
-      {geoError && <p className="text-red-400 text-center">{geoError}</p>}
+
+      {status === "loading" && (
+        <p className="text-white text-center">Mendeteksi lokasi Anda...</p>
+      )}
+
+      {geoError && (
+        <div className="text-red-400 text-center mb-2">
+          <p>{geoError}</p>
+          <p className="text-sm mt-1">
+            Silakan masukkan nama kota secara manual untuk melihat cuaca.
+          </p>
+        </div>
+      )}
+
       {loading && <p className="text-white text-center">Loading...</p>}
       {error && <p className="text-red-400 text-center">{error}</p>}
-      {/* Render WeatherInfo hanya jika data ada */}
+
       {weatherData && <WeatherInfo data={weatherData} />}
-      {/* Render Leaflet map client-side only */}
-      <LeafletMapClient location={weatherData?.location} />
+      {weatherData?.location && <LeafletMapClient location={weatherData.location} />}
     </main>
   );
 }
