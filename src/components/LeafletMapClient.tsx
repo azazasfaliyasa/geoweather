@@ -14,32 +14,48 @@ interface LeafletMapClientProps {
 
 export default function LeafletMapClient({ location }: LeafletMapClientProps) {
   useEffect(() => {
-    if (!location) return;
+    const fallbackLocation = {
+      lat: -6.2,
+      lon: 106.816666,
+      name: "Lokasi default (Jakarta)",
+    };
 
-    // Pastikan elemen #map sudah ada di DOM
+    const currentLocation = location ?? fallbackLocation;
+
     const mapElement = document.getElementById("map");
     if (!mapElement) return;
 
-    // Bersihkan isi elemen map sebelum inisialisasi ulang (optional)
+    // Bersihkan elemen sebelum render ulang
     mapElement.innerHTML = "";
 
-    // Inisialisasi map
-    const map = L.map("map").setView([location.lat, location.lon], 11);
+    // Inisialisasi peta
+    const map = L.map(mapElement).setView(
+      [currentLocation.lat, currentLocation.lon],
+      11
+    );
 
+    // Tambahkan layer peta dari OpenStreetMap
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
-    L.marker([location.lat, location.lon])
+    // Tambahkan marker
+    L.marker([currentLocation.lat, currentLocation.lon])
       .addTo(map)
-      .bindPopup(`<b>${location.name || "Lokasi"}</b>`)
+      .bindPopup(`<b>${currentLocation.name}</b>`)
       .openPopup();
 
+    // Cleanup saat unmount
     return () => {
       map.remove();
     };
   }, [location]);
 
-  return <div id="map" className="h-[400px] w-full rounded shadow-lg mt-4"></div>;
+  return (
+    <div
+      id="map"
+      className="h-[400px] w-full rounded shadow-lg mt-4 z-0"
+    ></div>
+  );
 }
