@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌤️ GeoWeather App
 
-## Getting Started
+GeoWeather adalah aplikasi web yang menampilkan **cuaca saat ini** berdasarkan lokasi pengguna secara otomatis menggunakan **Geolocation API** serta pencarian lokasi manual. Data cuaca diambil dari **WeatherAPI**, dan peta lokasi ditampilkan menggunakan **Leaflet.js + OpenStreetMap**.
 
-First, run the development server:
+Dibangun menggunakan [Next.js App Router](https://nextjs.org/docs/app) dengan Tailwind CSS untuk styling, serta deploy-ready di Vercel.
 
+---
+
+## 🚀 Demo Live
+
+🌐 [https://geoweather.vercel.app](https://geoweather.vercel.app)
+
+---
+
+## ✨ Fitur Utama
+
+- 🌍 Deteksi lokasi otomatis via **Geolocation API**
+- 🔍 Cari cuaca berdasarkan kota atau negara
+- 🗺️ Tampilkan lokasi di **Leaflet Map** (OpenStreetMap)
+- 🌤️ Informasi cuaca real-time:
+  - Suhu, kondisi langit, kecepatan angin, kelembapan
+  - Ikon cuaca dan waktu lokal
+- 🎯 Koordinat Latitude & Longitude
+- 💡 UI responsif dan ringan
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Next.js 14 (App Router)
+- **Styling**: Tailwind CSS
+- **Map**: Leaflet.js + OpenStreetMap
+- **API**: [WeatherAPI.com](https://www.weatherapi.com/)
+- **Deployment**: Vercel
+
+---
+
+## 📦 Instalasi Lokal
+
+### 1. Clone project
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/azazasfaliyasa/geoweather.git
+cd geoweather
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependencies
+```bash
+npm install
+# atau
+yarn install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Buat file `.env.local`
+```env
+NEXT_PUBLIC_WEATHER_API_KEY=your_weatherapi_key
+```
+> Dapatkan API key gratis dari: [https://www.weatherapi.com/](https://www.weatherapi.com/)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Jalankan development server
+```bash
+npm run dev
+```
 
-## Learn More
+Buka [http://localhost:3000](http://localhost:3000) di browser.
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Deploy ke Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Aplikasi ini siap dideploy ke Vercel secara langsung. Langkah:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Push project ke GitHub
+2. Buka [https://vercel.com/new](https://vercel.com/new)
+3. Import repository kamu
+4. Tambahkan environment variable:
+   - `NEXT_PUBLIC_WEATHER_API_KEY`
+5. Klik **Deploy**
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📸 Preview
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<img src="public/preview.png" alt="Preview App" width="100%" />
+
+---
+
+## 🧑‍💻 Kontributor
+
+Made with ❤️ by [Azaz Asfali Yasa](https://github.com/azazasfaliyasa)
+
+---
+
+## 📄 License
+
+MIT License. Bebas digunakan dan dimodifikasi untuk keperluan pribadi maupun komersial.
